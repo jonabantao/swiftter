@@ -92,6 +92,9 @@ class HomeTableViewController: UITableViewController {
         
         cell.userNameLabel.text = user["name"] as? String
         cell.tweetContentLabel.text = self.tweetArray[indexPath.row]["text"] as? String
+        cell.isFavorited = self.tweetArray[indexPath.row]["favorited"] as? Bool ?? false
+        cell.isRetweeted = self.tweetArray[indexPath.row]["retweeted"] as? Bool ?? false
+        cell.tweetId = self.tweetArray[indexPath.row]["id"] as? Int
     
         
         return cell

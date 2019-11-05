@@ -48,7 +48,6 @@ class TwitterAPICaller: BDBOAuth1SessionManager {
     }
     
     func getDictionariesRequest(url: String, parameters: [String:Any], success: @escaping ([NSDictionary]) -> (), failure: @escaping (Error) -> ()){
-        print(parameters)
         TwitterAPICaller.client?.get(url, parameters: parameters, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             success(response as! [NSDictionary])
         }, failure: { (task: URLSessionDataTask?, error: Error) in
@@ -64,4 +63,13 @@ class TwitterAPICaller: BDBOAuth1SessionManager {
         })
     }
     
+    func postTweet(tweet: String, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        let postTweetURL = "https://api.twitter.com/1.1/statuses/update.json"
+        
+        TwitterAPICaller.client?.post(postTweetURL, parameters: [ "status": tweet ], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            success()
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+    }
 }

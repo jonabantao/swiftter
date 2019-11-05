@@ -24,6 +24,12 @@ class HomeTableViewController: UITableViewController {
         tableView.refreshControl = tweetsRefreshControl
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.loadTweets()
+    }
+    
     @objc private func loadTweets() {
         self.numberOfTweets = 20
         let homeTimeline = "https://api.twitter.com/1.1/statuses/home_timeline.json"

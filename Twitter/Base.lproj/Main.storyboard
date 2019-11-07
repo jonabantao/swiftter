@@ -104,12 +104,17 @@
                                 <action selector="onLogout:" destination="VFk-Yk-ddf" id="qdC-ah-thb"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="eZJ-vm-UfQ">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <segue destination="Zkg-n3-1Sb" kind="presentation" modalPresentationStyle="fullScreen" id="kv7-IV-8xo"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="edit-icon" id="eZJ-vm-UfQ">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="Zkg-n3-1Sb" kind="presentation" identifier="tweetNavigationSegue" modalPresentationStyle="fullScreen" id="kv7-IV-8xo"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="profile-Icon" style="plain" id="c9B-yx-2FQ">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O5d-90-AEJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -225,13 +230,13 @@
                         <viewLayoutGuide key="safeArea" id="iey-0t-JDN"/>
                     </view>
                     <navigationItem key="navigationItem" id="GGU-TC-t6g">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="edg-g5-tKz">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" image="close-icon" id="edg-g5-tKz">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="cancel:" destination="bhf-hP-Ltt" id="HRn-nm-S3m"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="6fQ-tZ-5aC">
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" style="done" id="6fQ-tZ-5aC">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="tweet:" destination="bhf-hP-Ltt" id="mza-hD-lqY"/>
@@ -240,6 +245,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="characterCountLabel" destination="Ntg-5a-JeQ" id="LNk-oW-ERg"/>
+                        <outlet property="profileImageView" destination="EEB-d6-8Pc" id="3z3-Ky-nJb"/>
                         <outlet property="tweetTextView" destination="V5X-2V-fdA" id="snh-Qr-lPQ"/>
                     </connections>
                 </viewController>
@@ -269,7 +275,10 @@
     </scenes>
     <resources>
         <image name="TwitterLogoBlue" width="200" height="200"/>
+        <image name="close-icon" width="26" height="24"/>
+        <image name="edit-icon" width="30" height="27"/>
         <image name="favor-icon" width="30" height="30"/>
+        <image name="profile-Icon" width="26" height="26"/>
         <image name="retweet-icon" width="30" height="30"/>
     </resources>
 </document>

@@ -112,4 +112,14 @@ class TwitterAPICaller: BDBOAuth1SessionManager {
             failure(error)
         })
     }
+    
+    func getCurrentUserData(success: @escaping (NSDictionary) -> (), failure: @escaping (Error) -> ()) {
+        let credentialsURL = "https://api.twitter.com/1.1/account/verify_credentials.json"
+        
+        TwitterAPICaller.client?.get(credentialsURL, parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            success(response as! NSDictionary)
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+    }
 }

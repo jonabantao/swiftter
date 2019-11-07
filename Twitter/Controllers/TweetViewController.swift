@@ -8,9 +8,11 @@
 
 import UIKit
 import RSKPlaceholderTextView
+import AlamofireImage
 
 class TweetViewController: UIViewController, UITextViewDelegate {
     
+    var profileImageURL: String!
     private let maxCharacterLimit = 140
     private var currentCharacterCount = 0 {
         didSet {
@@ -21,9 +23,15 @@ class TweetViewController: UIViewController, UITextViewDelegate {
     }
     @IBOutlet weak var tweetTextView: RSKPlaceholderTextView!
     @IBOutlet weak var characterCountLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        profileImageView.af_setImage(withURL: URL(string: profileImageURL)!)
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2
+        profileImageView.layer.masksToBounds = true
+        profileImageView.layer.borderWidth = 0
 
         self.tweetTextView.placeholder = "What's happpening?"
         self.tweetTextView.delegate = self

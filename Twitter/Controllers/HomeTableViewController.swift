@@ -12,6 +12,7 @@ class HomeTableViewController: UITableViewController {
     
     var tweetArray = [NSDictionary]()
     var numberOfTweets: Int!
+    var userData = NSDictionary()
     
     let tweetsRefreshControl = UIRefreshControl()
 
@@ -19,6 +20,7 @@ class HomeTableViewController: UITableViewController {
         super.viewDidLoad()
 
         loadTweets()
+        getCurrentUser()
         
         tweetsRefreshControl.addTarget(self, action: #selector(loadTweets), for: .valueChanged)
         tableView.refreshControl = tweetsRefreshControl
@@ -26,8 +28,16 @@ class HomeTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         self.loadTweets()
+    }
+    
+    private func getCurrentUser() {
+        TwitterAPICaller.client?.getCurrentUserData(success: { (currentUser: NSDictionary) in
+            self.userData = currentUser
+        }, failure: { (Error) in
+            print("Failed to get current user")
+        })
     }
     
     @objc private func loadTweets() {
@@ -46,6 +56,8 @@ class HomeTableViewController: UITableViewController {
             self.tweetsRefreshControl.endRefreshing()
         }, failure: { (Error) in
             print("Failed to retrieve tweets")
+            
+            self.tweetsRefreshControl.endRefreshing()
         })
     }
     
@@ -107,7 +119,14 @@ class HomeTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return tweetArray.count
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "tweetNavigationSegue" {
+            let tweetNavigationView = segue.destination as! UINavigationController
+            let tweetViewController = tweetNavigationView.viewControllers.first as! TweetViewController
+            tweetViewController.profileImageURL = self.userData["profile_image_url_https"] as! String
+        }
     }
 }

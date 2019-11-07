@@ -185,16 +185,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hkh-2l-wBY">
-                                <rect key="frame" x="74" y="54" width="285" height="250"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="NTP-f7-I7e"/>
-                                </constraints>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EEB-d6-8Pc">
                                 <rect key="frame" x="16" y="54" width="50" height="50"/>
                                 <constraints>
@@ -205,15 +195,32 @@
                                     <constraint firstAttribute="height" constant="50" id="tY4-Zc-def"/>
                                 </constraints>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="V5X-2V-fdA" customClass="RSKPlaceholderTextView" customModule="RSKPlaceholderTextView">
+                                <rect key="frame" x="74" y="52" width="293" height="130"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ntg-5a-JeQ">
+                                <rect key="frame" x="330" y="190.5" width="29" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="hkh-2l-wBY" firstAttribute="top" secondItem="iey-0t-JDN" secondAttribute="top" constant="10" id="3Tu-Tk-J7R"/>
-                            <constraint firstItem="hkh-2l-wBY" firstAttribute="leading" secondItem="EEB-d6-8Pc" secondAttribute="trailing" constant="8" id="RXw-nY-9g4"/>
+                            <constraint firstItem="Ntg-5a-JeQ" firstAttribute="leading" secondItem="iey-0t-JDN" secondAttribute="leading" constant="330" id="AaU-PK-kPD"/>
+                            <constraint firstItem="V5X-2V-fdA" firstAttribute="top" secondItem="iey-0t-JDN" secondAttribute="top" constant="8" id="NEh-lE-XRF"/>
+                            <constraint firstItem="iey-0t-JDN" firstAttribute="trailing" secondItem="Ntg-5a-JeQ" secondAttribute="trailing" constant="16" id="Og2-ZS-p2I"/>
+                            <constraint firstItem="V5X-2V-fdA" firstAttribute="leading" secondItem="EEB-d6-8Pc" secondAttribute="trailing" constant="8" id="TRa-xI-9o4"/>
                             <constraint firstItem="EEB-d6-8Pc" firstAttribute="top" secondItem="iey-0t-JDN" secondAttribute="top" constant="10" id="ZJ4-kc-4sM"/>
                             <constraint firstItem="EEB-d6-8Pc" firstAttribute="leading" secondItem="iey-0t-JDN" secondAttribute="leading" constant="16" id="e7O-hS-z4Z"/>
-                            <constraint firstItem="iey-0t-JDN" firstAttribute="trailing" secondItem="hkh-2l-wBY" secondAttribute="trailing" constant="16" id="eR5-yQ-h2O"/>
-                            <constraint firstItem="hkh-2l-wBY" firstAttribute="leading" secondItem="EEB-d6-8Pc" secondAttribute="trailing" constant="8" id="mz5-ab-UY5"/>
+                            <constraint firstItem="iey-0t-JDN" firstAttribute="trailing" secondItem="V5X-2V-fdA" secondAttribute="trailing" constant="8" id="fEs-Ng-TTA"/>
+                            <constraint firstItem="Ntg-5a-JeQ" firstAttribute="firstBaseline" secondItem="V5X-2V-fdA" secondAttribute="baseline" constant="24.5" symbolType="layoutAnchor" id="kiM-lI-5Ms"/>
+                            <constraint firstItem="iey-0t-JDN" firstAttribute="bottom" secondItem="V5X-2V-fdA" secondAttribute="bottom" constant="485" id="mBB-nV-iMx"/>
+                            <constraint firstItem="iey-0t-JDN" firstAttribute="bottom" secondItem="Ntg-5a-JeQ" secondAttribute="bottom" constant="455.5" id="wlC-Zy-Nfn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iey-0t-JDN"/>
                     </view>
@@ -221,18 +228,19 @@
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="edg-g5-tKz">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="onCancel:" destination="bhf-hP-Ltt" id="HRn-nm-S3m"/>
+                                <action selector="cancel:" destination="bhf-hP-Ltt" id="HRn-nm-S3m"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Tweet" id="6fQ-tZ-5aC">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="onTweet:" destination="bhf-hP-Ltt" id="mza-hD-lqY"/>
+                                <action selector="tweet:" destination="bhf-hP-Ltt" id="mza-hD-lqY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tweetTextView" destination="hkh-2l-wBY" id="uyX-T6-rIw"/>
+                        <outlet property="characterCountLabel" destination="Ntg-5a-JeQ" id="LNk-oW-ERg"/>
+                        <outlet property="tweetTextView" destination="V5X-2V-fdA" id="snh-Qr-lPQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pAV-Gn-Vt1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

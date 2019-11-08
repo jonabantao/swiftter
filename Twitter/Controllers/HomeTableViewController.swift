@@ -126,7 +126,11 @@ class HomeTableViewController: UITableViewController {
         if segue.identifier == "tweetNavigationSegue" {
             let tweetNavigationView = segue.destination as! UINavigationController
             let tweetViewController = tweetNavigationView.viewControllers.first as! TweetViewController
-            tweetViewController.profileImageURL = self.userData["profile_image_url_https"] as! String
+            tweetViewController.profileImageURL = (self.userData["profile_image_url_https"] as! String)
+        } else if segue.identifier == "userProfileSegue" {
+            let userProfileViewController = segue.destination as! UserProfileViewController
+            
+            userProfileViewController.user = self.userData
         }
     }
 }
